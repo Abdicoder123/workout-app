@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!
   
     def index
       @workouts = Workout.all  
@@ -10,12 +10,15 @@ class WorkoutsController < ApplicationController
     end
   
     def create
-      @workout = Workout.new(workout_params)  
-  
+        #To make sure that the users logged in have their user_id collected
+        @workout = Workout.create(workout_params.merge(user_id: current_user.id))
       if @workout.save
         redirect_to @workout, notice: 'Workout was successfully created.' 
       else
-        render :new  
+        # To display the error
+        puts @workout.errors.full_messages 
+        flash[:alert] = @workout.errors.full_messages.to_sentence 
+        render :new, status: :unprocessable_entity
       end
     end
   
@@ -47,7 +50,7 @@ class WorkoutsController < ApplicationController
     private
   
     def workout_params
-      params.require(:workout).permit(:name, :description, :muscle_group, :equipment, :category, :user_id)
+      params.require(:workout).permit(:name, :description, :muscle_group, :equipment, :category)
     end
   end
   
