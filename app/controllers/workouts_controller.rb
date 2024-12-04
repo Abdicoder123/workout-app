@@ -10,12 +10,14 @@ class WorkoutsController < ApplicationController
     end
   
     def create
-    @workout = current_user.workouts.build(workout_params) 
+        #To make sure that the users logged in have their user_id collected
+        @workout = Workout.create(workout_params.merge(user_id: current_user.id))
       if @workout.save
         redirect_to @workout, notice: 'Workout was successfully created.' 
       else
-        puts @workout.errors.full_messages # Logs errors to the console
-        flash[:alert] = @workout.errors.full_messages.to_sentence # Display errors on the page
+        # To display the error
+        puts @workout.errors.full_messages 
+        flash[:alert] = @workout.errors.full_messages.to_sentence 
         render :new, status: :unprocessable_entity
       end
     end
