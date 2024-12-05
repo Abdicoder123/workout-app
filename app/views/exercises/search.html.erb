@@ -1,6 +1,19 @@
+<% content_for :javascript do %>
+  <script type="module">
+    import "search";
+  </script>
+<% end %>
+
 <h1>Exercises</h1>
 
-<form class="search" action="action_page.php">
-  <input type="text" placeholder="Search.." name="search">
+<form id="search" action="javascript:void(0);">
+  <input type="text" id="search-input" placeholder="Search.." name="search">
   <button type="submit">Search<i class="fa fa-search"></i></button>
 </form>
+
+<div id="results-container">
+</div>
+
+<script>
+  const API_KEY = '<%= Rails.application.credentials.apiKey %>';  
+</script>

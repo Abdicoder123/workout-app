@@ -1,0 +1,80 @@
+console.log("Testing 3");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#search');
+  const input = document.querySelector('#search-input');
+  const resultsContainer = document.querySelector('#results-container');
+
+  const API_URL = 'https://wger.de/api/v2/exerciseinfo/';
+  const LIMIT = 20;
+
+  // Function to fetch all exercises using limit and offset which is necessary to go through all the pages of the API
+  async function featchExercises() {
+    let allExercises = [];
+    let offset = 0;
+    let hasMore = true;
+
+    try {
+      while (hasMore) {
+        const response = await fetch(`${API_URL}?limit=${LIMIT}&offset=${offset}`, {
+          headers: {
+            'Authorization': `Token ${API_KEY}`,
+            'Accept': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch results from the Wger API.');
+        }
+
+        const data = await response.json();
+        allExercises = allExercises.concat(data.results);
+
+        // Update the NEXT url and keep checking till there are no pages left.
+        offset += LIMIT;
+        hasMore = data.next !== null;
+      }
+      return allExercises;
+    } catch (error) {
+      console.error("Error fetching all exercises:", error);
+      return [];
+    }
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); 
+      const query = input.value.trim().toLowerCase();
+
+      if (!query) {
+        resultsContainer.innerHTML = '<p>Please enter a search term.</p>';
+        return;
+      }
+
+      try {
+        // Fetch the Json containing the exercises
+        const allExercises = await featchExercises
+();
+
+        // Filter exercises by name
+        const filteredExercises = allExercises.filter(exercise =>
+          exercise.name.toLowerCase().includes(query)
+        );
+
+        // Display filtered results
+        if (filteredExercises.length > 0) {
+          resultsContainer.innerHTML = filteredExercises.map(exercise => `
+            <div class="exercise" id="exercise-results">
+              <h3>Exercise: ${exercise.name}</h3>
+              <p>${exercise.description || 'No description available.'}</p>
+              <p></p>
+            </div>
+          `).join('');
+        } else {
+          resultsContainer.innerHTML = `<p>No exercises found for "${query}".</p>`;
+        }
+      } catch (error) {
+        resultsContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+      }
+    });
+  }
+});
