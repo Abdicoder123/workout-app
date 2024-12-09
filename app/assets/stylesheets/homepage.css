@@ -1,25 +1,12 @@
-#nav-bar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  #home-link {
-    float: left;
+.sign-out {
     display: flex;
-  }
-  
-  #home-link a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  #home-link a:hover {
-    background-color: #111;
-  }
+}
+.sing-in {
+    display: flex;
+}
+.sign-up {
+    display:flex
+}
+.nav-item:hover {
+    background-color: gray;
+}

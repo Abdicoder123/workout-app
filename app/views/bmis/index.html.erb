@@ -9,8 +9,8 @@
         <%= link_to bmi.number, bmi_path(bmi) %>
         (<%= bmi.created_at.strftime("%B %d, %Y") %>)
       </li>
-      <li id="bmi-category">
-        <em><strong>Category:</strong> <%= bmi.category %></em>
+      <li id="bmi-date">
+        <em><strong>Date:</strong> (<%= bmi.created_at.strftime("%B %d, %Y") %>)</em>
       </li>
     <% end %>
   </ul>
