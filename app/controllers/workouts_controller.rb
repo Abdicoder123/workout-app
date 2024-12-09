@@ -17,7 +17,7 @@ class WorkoutsController < ApplicationController
       else
         # To display the error
         puts @workout.errors.full_messages 
-        flash[:alert] = @workout.errors.full_messages.to_sentence 
+
         render :new, status: :unprocessable_entity
       end
     end

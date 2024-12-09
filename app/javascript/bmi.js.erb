@@ -1,18 +1,18 @@
-console.log("Bmi loading");
 console.log("BMI loading");
-document.addEventListener("DOMContentLoaded", function () {
-  const heightField = document.getElementById("height");
-  const weightField = document.getElementById("weight");
-  const hiddenBmiNumberField = document.getElementById("bmi-number");
-  const hiddenBmiCategoryField = document.getElementById("category");
 
-  function calculateBMI() {
-    const height = parseFloat(heightField.value);
-    const weight = parseFloat(weightField.value);
+document.addEventListener("DOMContentLoaded", function () {
+  const heightInput = document.getElementById("height");
+  const weightInput = document.getElementById("weight");
+  const bmiNumber = document.getElementById("bmi-number");
+  const bmiCategory = document.getElementById("category");
+
+  function updateBMI() {
+    const height = parseFloat(heightInput.value);
+    const weight = parseFloat(weightInput.value);
 
     if (height && weight) {
       const bmi = (weight / (height * height)).toFixed(2);
-      hiddenBmiNumberField.value = bmi;
+      bmiNumber.value = bmi;
 
       let category = "";
       if (bmi < 18.5) {
@@ -25,14 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
         category = "Obesity";
       }
 
-      hiddenBmiCategoryField.value = category;
+      bmiCategory.value = category;
     } else {
-      hiddenBmiNumberField.value = "";
-      hiddenBmiCategoryField.value = "";
+      bmiNumber.value = "";
+      bmiCategory.value = "";
     }
   }
 
-  heightField.addEventListener("input", calculateBMI);
-  weightField.addEventListener("input", calculateBMI);
+  heightInput.addEventListener("input", updateBMI);
+  weightInput.addEventListener("input", updateBMI);
 });
-
