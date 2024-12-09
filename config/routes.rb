@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :workouts
+  resources :bmis
   get 'exercises/search', to: 'exercises#search', as: :search_exercises
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

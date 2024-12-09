@@ -1,0 +1,32 @@
+<% content_for :javascript do %>
+    <script type="module">
+      import "bmi";
+    </script>
+  <% end %>
+
+<%= form_with model: @bmi, local: true do |form| %>
+    <div>
+      <%= form.label :height, "Height (in meters)" %>
+      <%= form.number_field :height, required: true, id: "height-field" %>
+    </div>
+  
+    <div>
+      <%= form.label :weight, "Weight (in kilograms)" %>
+      <%= form.number_field :weight, required: true, id: "weight-field" %>
+    </div>
+  
+    <div>
+      <label for="bmi-number">BMI:</label>
+      <input type="text" id="bmi-number" readonly>
+    </div>
+  
+    <div>
+      <label for="bmi-category">Category:</label>
+      <input type="text" id="bmi-category" readonly>
+    </div>
+  
+    <div>
+      <%= form.submit "Create BMI" %>
+    </div>
+  <% end %>
+  
