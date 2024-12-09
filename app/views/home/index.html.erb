@@ -1,0 +1,9 @@
+<div id="sign-button">
+<% if user_signed_in? %>
+<%= button_to "Sign Out", destroy_user_session_path, method:
+:delete %>
+<% else %>
+<%= button_to "Sign In", user_session_path %>
+<% end %>
+</div>
+<h1>Workout App</h1>

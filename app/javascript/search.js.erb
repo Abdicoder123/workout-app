@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to fetch all exercises using limit and offset which is necessary to go through all the pages of the API
   async function featchExercises() {
+    //Store all the exersices here to parse through 
     let allExercises = [];
     let offset = 0;
     let hasMore = true;
@@ -64,9 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filteredExercises.length > 0) {
           resultsContainer.innerHTML = filteredExercises.map(exercise => `
             <div class="exercise" id="exercise-results">
-              <h3>Exercise: ${exercise.name}</h3>
+              <h3>${exercise.name}</h3>
+              <h4>Description</h4>
               <p>${exercise.description || 'No description available.'}</p>
-              <p></p>
+              <h4>Category</h4>
+              <p>${exercise.category.name || 'No description available.'}</p>
+              <h4>Muscles</h4>
+              <p>${exercise.muscles.name || 'No description available.'}</p>
+              <h4>Equipment</h4>
+              <p>${exercise.equipment.name || 'No description available.'}</p>
             </div>
           `).join('');
         } else {

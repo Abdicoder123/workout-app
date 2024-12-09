@@ -1,1 +1,20 @@
 <h1>Workouts</h1>
+<%= link_to 'Back to Homepage', root_path %> 
+
+<% if @workouts.present? %>
+  <ul>
+    <% @workouts.each do |workout| %>
+      <li>
+        <%= link_to workout.name, workout_path(workout) %> 
+        (<%= workout.category %>)
+      </li>
+      <li id="description">
+        <em><%= workout.description %></em>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No workouts available.</p>
+<% end %>
+
+<%= link_to 'New Workout', new_workout_path, class: 'btn btn-success' %>

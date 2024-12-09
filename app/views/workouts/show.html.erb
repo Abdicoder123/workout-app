@@ -1,0 +1,19 @@
+<h1><%= @workout.name %></h1>
+<p>
+  <strong>Category:</strong> <%= @workout.category %>
+</p>
+<p>
+  <strong>Description:</strong> <%= @workout.description %>
+</p>
+<p>
+  <strong>Muscle Group:</strong> <%= @workout.muscle_group %>
+</p>
+<p>
+  <strong>Equipment:</strong> <%= @workout.equipment %>
+</p>
+
+<div class="actions">
+  <%= link_to 'Edit Workout', edit_workout_path(@workout), class: 'btn btn-primary' %>
+  <%= link_to 'Delete Workout', workout_path(@workout), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <%= link_to 'Back to Workouts', workouts_path, class: 'btn btn-secondary' %>
+</div>
