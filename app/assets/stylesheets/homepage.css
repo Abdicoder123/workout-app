@@ -10,3 +10,10 @@
 .nav-item:hover {
     background-color: gray;
 }
+
+nav {
+    background-color: bisque;    
+}
+body {
+    background-color: bisque;
+}
