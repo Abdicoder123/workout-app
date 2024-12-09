@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_04_151528) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_09_081656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bmis", force: :cascade do |t|
+    t.float "height", null: false
+    t.float "weight", null: false
+    t.float "number", null: false
+    t.string "category", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bmis_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,5 +49,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_151528) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
+  add_foreign_key "bmis", "users"
   add_foreign_key "workouts", "users"
 end
