@@ -1,9 +1,8 @@
 <div id="sign-button">
-<% if user_signed_in? %>
-<%= button_to "Sign Out", destroy_user_session_path, method:
-:delete %>
-<% else %>
-<%= button_to "Sign In", user_session_path %>
-<% end %>
-</div>
 <h1>Workout App</h1>
+
+<ul id="nav-bar">
+<li id="home-link"> <%= link_to 'BMI Tracker', bmis_path, class: 'btn btn-primary' %> </li>
+<li id="home-link"> <%= link_to 'Workout Form', workouts_path %> </li>
+<li id="home-link"> <%= link_to 'Exercise Search', search_exercises_path %> </li>
+</ul>
