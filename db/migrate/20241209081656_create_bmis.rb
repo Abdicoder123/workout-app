@@ -3,8 +3,8 @@ class CreateBmis < ActiveRecord::Migration[7.2]
     create_table :bmis do |t|
       t.float :height, null: false
       t.float :weight, null: false
-      t.float :number, null: false
-      t.string :category, null: false
+      t.float :number
+      t.string :category
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

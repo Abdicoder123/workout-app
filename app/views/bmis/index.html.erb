@@ -1,0 +1,21 @@
+<h1>My BMIs</h1>
+<%= link_to 'Back to Homepage', root_path %>
+
+<% if @bmis.present? %>
+  <ul>
+    <% @bmis.each do |bmi| %>
+      <li>
+        <strong>BMI Number:</strong>
+        <%= link_to bmi.number, bmi_path(bmi) %>
+        (<%= bmi.created_at.strftime("%B %d, %Y") %>)
+      </li>
+      <li id="bmi-category">
+        <em><strong>Category:</strong> <%= bmi.category %></em>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No BMI records available.</p>
+<% end %>
+
+<%= link_to 'New BMI Record', new_bmi_path, class: 'btn btn-success' %>
