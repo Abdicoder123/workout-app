@@ -1,1 +1,38 @@
-console.log("Bmi loading")
+console.log("Bmi loading");
+console.log("BMI loading");
+document.addEventListener("DOMContentLoaded", function () {
+  const heightField = document.getElementById("height");
+  const weightField = document.getElementById("weight");
+  const hiddenBmiNumberField = document.getElementById("bmi-number");
+  const hiddenBmiCategoryField = document.getElementById("category");
+
+  function calculateBMI() {
+    const height = parseFloat(heightField.value);
+    const weight = parseFloat(weightField.value);
+
+    if (height && weight) {
+      const bmi = (weight / (height * height)).toFixed(2);
+      hiddenBmiNumberField.value = bmi;
+
+      let category = "";
+      if (bmi < 18.5) {
+        category = "Underweight";
+      } else if (bmi >= 18.5 && bmi < 24.9) {
+        category = "Normal weight";
+      } else if (bmi >= 25 && bmi < 29.9) {
+        category = "Overweight";
+      } else {
+        category = "Obesity";
+      }
+
+      hiddenBmiCategoryField.value = category;
+    } else {
+      hiddenBmiNumberField.value = "";
+      hiddenBmiCategoryField.value = "";
+    }
+  }
+
+  heightField.addEventListener("input", calculateBMI);
+  weightField.addEventListener("input", calculateBMI);
+});
+
