@@ -9,8 +9,7 @@
 
 <div class="actions">
   <%= link_to 'Edit BMI', edit_bmi_path(@bmi), class: 'btn btn-warning' %>
-  <%= link_to 'Delete BMI', @bmi, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this BMI record?' }, class: 'btn btn-danger' %>
-  <%= link_to 'Back to BMI Records', bmis_path, class: 'btn btn-primary' %>
+  <%= button_to "Delete", @bmi, method: :delete, data: { confirm: "Are you sure you want to delete this BMI?" },class: "btn btn-danger" %>
 </div>
-
+<%= link_to 'Back to my BMIs', bmis_path, class: 'btn btn-primary' %>
 

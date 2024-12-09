@@ -15,8 +15,7 @@ class BmisController < ApplicationController
       redirect_to @bmi, notice: 'BMI record was successfully created.' 
     else
       puts @bmi.errors.full_messages 
-      flash[:alert] = @bmi.errors.full_messages.to_sentence 
-      render :new, status: :unprocessable_entity
+
     end
   end
   
@@ -41,9 +40,10 @@ class BmisController < ApplicationController
   def destroy
     @bmi = Bmi.find(params[:id])  
     @bmi.destroy  
-  
-    redirect_to bmis_url, notice: 'BMI record was successfully destroyed.'  
+
+    redirect_to bmis_url, notice: 'Workout was successfully destroyed.'  
   end
+  
   
   private
   
