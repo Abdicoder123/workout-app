@@ -1,11 +1,161 @@
-<head></head>
-<body>
-<main>
-  <article class="about">
-    <h2>About Workout App</h2>
-    <p>The workout app </p>
-  </article>
-  <img src="https://media.self.com/photos/6398b36c72eb56f726777d06/1:1/w_2400,h_2400,c_limit/weekly-workout-schedule.jpeg" alt="Weekly Workout Schedule" style="max-width: 50%; max-height: 30%;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv+Y4H8U1CzYbX6Jr58hBv8Zp6unzdU8s8vWZZms7mRl+fo6eyJl2uI79P5" crossorigin="anonymous">
+  <style>
+    /* General Styling */
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+    }
 
-</main>
+    /* Header Section */
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* Main Content Section */
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .content-box {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Article Styles */
+    .article-card {
+      margin-bottom: 30px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .article-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .article-card .card-body {
+      padding: 20px;
+    }
+
+    .article-card .card-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .article-card .card-text {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Image Styling */
+    .image-box {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .image-box h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .image-box img {
+      max-width: 50%;
+      max-height: 30%;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to My Workout App</h1>
+    <p>Track your BMI and discover personalized exercises for your fitness journey!</p>
+  </header>
+
+  <!-- Main Content Section -->
+  <div class="main-content">
+    <div class="content-box">
+      <h2 class="text-center mb-4">About</h2>
+
+      <!-- Exercise Search Section -->
+      <div class="article-card">
+        <div class="card-body">
+          <h5 class="card-title">Exercise Search</h5>
+          <p class="card-text">Our app allows you to search for exercises based on your fitness goals. You can find a variety of exercises tailored to your needs, whether you're looking to build strength, improve flexibility, or enhance endurance. Easily add your favorite exercises to keep track of your fitness journey!</p>
+        </div>
+      </div>
+        <div class="image-box">
+        <img src="https://media.self.com/photos/6398b36c72eb56f726777d06/1:1/w_2400,h_2400,c_limit/weekly-workout-schedule.jpeg" alt="Weekly Workout Schedule">
+      </div>
+      <div class="article-card">
+        <div class="card-body">
+          <h5 class="card-title">Track Your BMI</h5>
+          <p class="card-text">With our BMI tracker, you can input your height and weight to calculate and monitor your BMI over time. The app will categorize your BMI and allow you to track your progress, making it easier for you to manage your health and fitness goals. Stay on top of your BMI and make adjustments to your routine as needed!</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Fitness App | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS, Popper, and jQuery (optional for dropdown functionality) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybU7l6e6Kk0U3u3AA8Fz2dR8QsI1ON2p6D9A6V3l2pKx1Ool7f" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cuocMw8bqv5U5OLuBiyxTt9s3yt0t1Bzzm4GnrsxNKq7Gp1o6t5zVb6eqF5/UY5y" crossorigin="anonymous"></script>
 </body>
+</html>

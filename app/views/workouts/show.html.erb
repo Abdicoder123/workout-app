@@ -1,20 +1,17 @@
-<h1><%= @workout.name %></h1>
-<p>
-  <strong>Category:</strong> <%= @workout.category %>
-</p>
-<p>
-  <strong>Description:</strong> <%= @workout.description %>
-</p>
-<p>
-  <strong>Muscle Group:</strong> <%= @workout.muscle_group %>
-</p>
-<p>
-  <strong>Equipment:</strong> <%= @workout.equipment %>
-</p>
-
-<div class="actions">
-  <%= link_to 'Edit Workout', edit_workout_path(@workout), class: 'btn btn-primary' %>
-  <%= button_to "Delete", @workout, method: :delete, data: { confirm: "Are you sure you want to delete this workout?" },class: "btn btn-danger" %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @workout.name %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Workout Record</h6>
+    <p><strong>Category:</strong> <%= @workout.category %></p>
+    <p><strong>Description:</strong> <%= @workout.description %></p>
+    <p><strong>Muscle Group:</strong> <%= @workout.muscle_group %></p>
+    <p><strong>Equipment:</strong> <%= @workout.equipment %></p>
+    <p><strong>Created At:</strong> <%= @workout.created_at.strftime("%B %d, %Y") %></p>
+    <div class="actions">
+      <%= link_to 'Edit Workout', edit_workout_path(@workout), class: 'btn btn-warning' %>
+      <%= button_to "Delete", @workout, method: :delete, data: { confirm: "Are you sure you want to delete this workout?" }, class: "btn btn-danger btn-lg" %>
+    </div>
+  </div>
 </div>
 
-  <%= link_to 'Back to Workouts', workouts_path, class: 'btn btn-secondary' %>
+<%= link_to 'Back to Workouts', workouts_path, class: 'btn btn-primary' %>

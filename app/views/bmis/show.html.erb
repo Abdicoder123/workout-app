@@ -4,8 +4,8 @@
     <h6 class="card-subtitle mb-2 text-body-secondary">BMI Record</h6>
     <p><strong>BMI Number:</strong> <%= @bmi.number %></p>
     <p><strong>Category:</strong> <%= @bmi.category %></p>
-    <p><strong>Height:</strong> <%= @bmi.height %> meters</p>
-    <p><strong>Weight:</strong> <%= @bmi.weight %> kilograms</p>
+    <p><strong>Height:</strong> <%= @bmi.height_ft %> ft <%= @bmi.height_in %> in</p>
+    <p><strong>Weight:</strong> <%= @bmi.weight %> lbs</p>
     <p><strong>Created At:</strong> <%= @bmi.created_at.strftime("%B %d, %Y") %></p>
     <div class="actions">
         <%= link_to 'Edit BMI', edit_bmi_path(@bmi), class: 'btn btn-warning' %>
