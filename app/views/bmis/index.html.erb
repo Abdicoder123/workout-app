@@ -1,21 +1,30 @@
-<h1>My BMIs</h1>
-<%= link_to 'Back to Homepage', root_path %>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">My BMIs</h1>
 
-<% if @bmis.present? %>
-  <ul>
-    <% @bmis.each do |bmi| %>
-      <li>
-        <strong>BMI Number:</strong>
-        <%= link_to bmi.number, bmi_path(bmi) %>
-        (<%= bmi.created_at.strftime("%B %d, %Y") %>)
-      </li>
-      <li id="bmi-date">
-        <em><strong>Date:</strong> (<%= bmi.created_at.strftime("%B %d, %Y") %>)</em>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No BMI records available.</p>
-<% end %>
+  <div class="text-center mb-4">
+    <%= link_to 'Back to Homepage', root_path, class: 'btn btn-primary' %>
+  </div>
 
-<%= link_to 'New BMI Record', new_bmi_path, class: 'btn btn-success' %>
+  <% if @bmis.present? %>
+    <ul class="list-group">
+      <% @bmis.each do |bmi| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>BMI Number:</strong> <%= link_to bmi.number, bmi_path(bmi), class: 'text-decoration-none' %>
+            <br>
+            <em id="bmi-date" class="text-muted">
+              <strong>Date:</strong> <%= bmi.created_at.strftime("%B %d, %Y") %>
+            </em>
+          </div>
+          <%= link_to 'View Details', bmi_path(bmi), class: 'btn btn-sm btn-info' %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-center text-muted">No BMI records available.</p>
+  <% end %>
+
+  <div class="text-center mt-4">
+    <%= link_to 'New BMI Record', new_bmi_path, class: 'btn btn-success btn-lg' %>
+  </div>
+</div>

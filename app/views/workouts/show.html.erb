@@ -3,7 +3,7 @@
     <h5 class="card-title"><%= @workout.name %></h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Workout Record</h6>
     <p><strong>Category:</strong> <%= @workout.category %></p>
-    <p><strong>Description:</strong> <%= @workout.description %></p>
+    <div><strong>Description:</strong> <%= @workout.description %></div>
     <p><strong>Muscle Group:</strong> <%= @workout.muscle_group %></p>
     <p><strong>Equipment:</strong> <%= @workout.equipment %></p>
     <p><strong>Created At:</strong> <%= @workout.created_at.strftime("%B %d, %Y") %></p>
