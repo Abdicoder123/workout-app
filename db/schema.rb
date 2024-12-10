@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_081656) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_10_172205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bmis", force: :cascade do |t|
-    t.float "height", null: false
     t.float "weight", null: false
     t.float "number"
     t.string "category"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "height_ft"
+    t.integer "height_in"
     t.index ["user_id"], name: "index_bmis_on_user_id"
   end
 

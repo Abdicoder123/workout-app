@@ -1,17 +1,24 @@
 console.log("BMI loading");
-
 document.addEventListener("DOMContentLoaded", function () {
-  const heightInput = document.getElementById("height");
-  const weightInput = document.getElementById("weight");
+  const heightFtInput = document.getElementById("height-ft");
+  const heightInInput = document.getElementById("height-in");
+  const weightLbsInput = document.getElementById("weight-lbs");
   const bmiNumber = document.getElementById("bmi-number");
   const bmiCategory = document.getElementById("category");
 
   function updateBMI() {
-    const height = parseFloat(heightInput.value);
-    const weight = parseFloat(weightInput.value);
+    const heightFt = parseFloat(heightFtInput.value) || 0;
+    const heightIn = parseFloat(heightInInput.value) || 0;
+    const weightLbs = parseFloat(weightLbsInput.value) || 0;
 
-    if (height && weight) {
-      const bmi = (weight / (height * height)).toFixed(2);
+    // Convert height from feet and inches to meters
+    const heightInMeters = ((heightFt * 12) + heightIn) * 0.0254;
+
+    // Convert weight from pounds to kilograms
+    const weightInKg = weightLbs * 0.453592;
+
+    if (heightInMeters > 0 && weightInKg > 0) {
+      const bmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
       bmiNumber.value = bmi;
 
       let category = "";
@@ -32,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  heightInput.addEventListener("input", updateBMI);
-  weightInput.addEventListener("input", updateBMI);
+  heightFtInput.addEventListener("input", updateBMI);
+  heightInInput.addEventListener("input", updateBMI);
+  weightLbsInput.addEventListener("input", updateBMI);
 });
