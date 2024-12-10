@@ -10,17 +10,30 @@ class WorkoutsController < ApplicationController
     end
   
     def create
-        #To make sure that the users logged in have their user_id collected
-        @workout = Workout.create(workout_params.merge(user_id: current_user.id))
+      @workout = Workout.new(workout_params.merge(user_id: current_user.id))
+    
       if @workout.save
-        redirect_to @workout, notice: 'Workout was successfully created.' 
+        respond_to do |format|
+          format.html do
+            redirect_to @workout, notice: 'Workout was successfully created.'
+          end
+          format.json do
+            render json: { message: 'Workout created successfully!', workout: @workout }, status: :created
+          end
+        end
       else
-        # To display the error
-        puts @workout.errors.full_messages 
-
-        render :new, status: :unprocessable_entity
+        respond_to do |format|
+          format.html do
+            puts @workout.errors.full_messages
+            render :new, status: :unprocessable_entity
+          end
+          format.json do
+            render json: { errors: @workout.errors.full_messages }, status: :unprocessable_entity
+          end
+        end
       end
     end
+    
   
     def show
       @workout = Workout.find(params[:id])  
