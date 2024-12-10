@@ -1,4 +1,4 @@
-console.log("Testing 3");
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#search');
   const input = document.querySelector('#search-input');
@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_URL = 'https://wger.de/api/v2/exerciseinfo/';
   const LIMIT = 20;
 
-  // Function to fetch all exercises using limit and offset which is necessary to go through all the pages of the API
   async function featchExercises() {
-    //Store all the exersices here to parse through 
     let allExercises = [];
     let offset = 0;
     let hasMore = true;
@@ -28,8 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const data = await response.json();
         allExercises = allExercises.concat(data.results);
-
-        // Update the NEXT url and keep checking till there are no pages left.
         offset += LIMIT;
         hasMore = data.next !== null;
       }
@@ -41,9 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function postExerciseToWorkout(exercise) {
+    try {
+      const response = await fetch('/workouts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({
+          workout: {
+            name: exercise.name,
+            description: exercise.description,
+            muscle_group: exercise.muscles.map(muscle => muscle.name).join(', ') || 'N/A',
+            equipment: exercise.equipment.map(equip => equip.name).join(', ') || 'N/A',
+            category: exercise.category?.name || 'N/A'
+          }
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add exercise to workout.');
+      }
+
+      alert('Exercise added to workout successfully!');
+    } catch (error) {
+      console.error('Error adding exercise to workout:', error);
+      alert('Error adding exercise to workout.');
+    }
+  }
+
   if (form) {
     form.addEventListener('submit', async (event) => {
-        
       event.preventDefault(); 
       const query = input.value.trim().toLowerCase();
 
@@ -53,16 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        // Fetches the Json containing the exercises
-        const allExercises = await featchExercises
-();
+        const allExercises = await featchExercises();
 
-        // Filter exercises by name
         const filteredExercises = allExercises.filter(exercise =>
           exercise.name.toLowerCase().includes(query)
         );
 
-        // Display filtered results
         if (filteredExercises.length > 0) {
           resultsContainer.innerHTML = filteredExercises.map(exercise => `
             <div class="exercise" id="exercise-results">
@@ -70,13 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
               <h4>Description</h4>
               <p>${exercise.description || 'No description available.'}</p>
               <h4>Category</h4>
-              <p>${exercise.category.name || 'No category described.'}</p>
+              <p>${exercise.category?.name || 'No category described.'}</p>
               <h4>Muscles</h4>
-              <p>${exercise.muscles.name || 'No Muscle groups available.'}</p>
+              <p>${exercise.muscles.map(m => m.name).join(', ') || 'No Muscle groups available.'}</p>
               <h4>Equipment</h4>
-              <p>${exercise.equipment.name || 'No Equipment provided.'}</p>
+              <p>${exercise.equipment.map(e => e.name).join(', ') || 'No Equipment provided.'}</p>
+              <button class="add-to-workout" data-exercise='${JSON.stringify(exercise)}'>Add to Workout</button>
             </div>
           `).join('');
+          // Attach event listeners to "Add to Workout" buttons
+          document.querySelectorAll('.add-to-workout').forEach(button => {
+            button.addEventListener('click', () => {
+              const exercise = JSON.parse(button.getAttribute('data-exercise'));
+              postExerciseToWorkout(exercise);
+            });
+          });
         } else {
           resultsContainer.innerHTML = `<p>No exercises found for "${query}".</p>`;
         }
