@@ -15,7 +15,7 @@
                 <%= link_to workout.name, workout_path(workout), class: 'text-decoration-none text-primary' %>
               </h5>
               <small class="text-muted">Category: <%= workout.category %></small>
-              <p class="mb-0 mt-2"><em><%= workout.description %></em></p>
+              <p class="mb-0 mt-2"><em><%= sanitize(workout.description) %></em></p>
             </div>
             <%= link_to 'View Details', workout_path(workout), class: 'btn btn-primary btn-sm' %>
           </div>
