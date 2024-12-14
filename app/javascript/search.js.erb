@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.querySelector('#search-input');
   const resultsContainer = document.querySelector('#results-container');
 
-  const API_URL = 'https://wger.de/api/v2/exerciseinfo/';
+  const API_URL = 'https://wger.de/${window.apiKey}/v2/exerciseinfo/';
   const LIMIT = 20;
 
   async function fetchExercises() {
