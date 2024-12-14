@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsContainer = document.querySelector('#results-container');
 
   const API_URL = 'https://wger.de/api/v2/exerciseinfo/';
-  const LIMIT = 20;
-  console.log(window.apiKey);
+  const LIMIT = 100;
 
   async function fetchExercises() {
     let allExercises = [];
