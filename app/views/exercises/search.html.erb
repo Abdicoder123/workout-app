@@ -3,6 +3,12 @@
     import "search";
   </script>
 <% end %>
+<% content_for :javascript do %>
+  <script type="module">
+    const apiKey = "<%= Rails.application.credentials.apiKey %>";
+    window.apiKey = apiKey;
+  </script>
+<% end %>
 
 <h1>Exercises</h1>
 
@@ -16,7 +22,3 @@
 <div id="results-container">
 
 </div>
-
-<script>
-  const window.apiKey = '<%= Rails.application.credentials.apiKey %>';  
-</script>
