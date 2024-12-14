@@ -5,19 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API_URL = 'https://wger.de/api/v2/exerciseinfo/';
   const LIMIT = 20;
+  console.log(window.apiKey);
 
   async function fetchExercises() {
     let allExercises = [];
     let offset = 0;
     let hasMore = true;
-
+    
     try {
       while (hasMore) {
         const response = await fetch(`${API_URL}?limit=${LIMIT}&offset=${offset}`, {
-          headers: {
-            'Authorization': `Token ${window.apiKey}`,
-            'Accept': 'application/json'
-          }
+            headers: {
+                'Authorization': `Token ${window.apiKey}`, 
+                'Accept': 'application/json'
+            }
         });
 
         if (!response.ok) {
