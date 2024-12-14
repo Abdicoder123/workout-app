@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       while (hasMore) {
         const response = await fetch(`${API_URL}?limit=${LIMIT}&offset=${offset}`, {
           headers: {
-            'Authorization': `Token ${window.API_KEY}`,
+            'Authorization': `Token ${window.apiKey}`,
             'Accept': 'application/json'
           }
         });
