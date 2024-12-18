@@ -62,4 +62,4 @@ gem "httparty"
 
 ruby "3.3.5"
 
-gem "zeitwerk", "~> 2.6.0"
+gem "zeitwerk", "~> 2.7.1"
